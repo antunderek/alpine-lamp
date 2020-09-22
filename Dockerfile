@@ -29,10 +29,16 @@ RUN apk add mariadb mariadb-client \
     php7-apcu \
     php7-opcache \
     php7-tokenizer \
-    php7-simplexml
+    php7-simplexml \
+    git \
+    bash
 
 RUN curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/bin --filename=composer
+
+RUN wget https://get.symfony.com/cli/installer -O - | bash
+RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+
 #
 #    sed -i 's#AllowOverride none#AllowOverride All#' /etc/apache2/httpd.conf && \
 #    sed -i 's#Require all denied#Require all granted#' /etc/apache2/httpd.conf && \
